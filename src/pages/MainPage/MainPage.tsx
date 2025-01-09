@@ -1,10 +1,29 @@
 import "./MainPage.scss";
+import { Navbar } from "../../components/Navbar/Navbar";
+import {MediaComponent} from "../../components/MediaComponent/MediaComponent"
+
+
+
+
 
 export const MainPage = () => {
+
+
+  const imagePaths = [
+    "./img/post/nature-1.png",
+    "./img/post/nature-2.png",
+    "./img/post/nature-3.png",
+    "./img/post/nature-4.png",
+    "./img/post/nature-5.png",
+    "./img/post/nature-6.png",
+  ];
+
+
   return (
     <div className="MainPage">
       <aside className="LeftSide">
-        <nav className="Navbar">
+        <Navbar />
+        {/* <nav className="Navbar">
           <ul className="navbar__list">
             <li className="navbar__item">
               <svg
@@ -161,7 +180,7 @@ export const MainPage = () => {
               <span className="Badge">100</span>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         <div className="List">
           <div className="List__title">
             <h2>Подписки</h2>
@@ -390,7 +409,8 @@ export const MainPage = () => {
           </div>
           <p className="Post__text">Момент умиротворения и спокойствия</p>
           <div className="media-container">
-            <img
+          <MediaComponent images={imagePaths} />
+            {/* <img
               className="media__item"
               src="./img/post/nature-1.png"
               alt="Post Item"
@@ -419,7 +439,7 @@ export const MainPage = () => {
               className="media__item"
               src="./img/post/nature-6.png"
               alt="Post Item"
-            />
+            /> */}
           </div>
           <div className="PostControls">
             <div className="icon-wrapper like">
