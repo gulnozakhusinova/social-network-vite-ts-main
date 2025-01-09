@@ -1,6 +1,6 @@
 import "./MainPage.scss";
 import { Navbar } from "../../components/Navbar/Navbar";
-import {MediaComponent} from "../../components/MediaComponent/MediaComponent"
+import { MediaComponent } from "../../components/MediaComponent/MediaComponent"
 
 
 
@@ -408,39 +408,8 @@ export const MainPage = () => {
             </div>
           </div>
           <p className="Post__text">Момент умиротворения и спокойствия</p>
-          <div className="media-container">
           <MediaComponent images={imagePaths} />
-            {/* <img
-              className="media__item"
-              src="./img/post/nature-1.png"
-              alt="Post Item"
-            />
-            <img
-              className="media__item"
-              src="./img/post/nature-2.png"
-              alt="Post Item"
-            />
-            <img
-              className="media__item"
-              src="./img/post/nature-3.png"
-              alt="Post Item"
-            />
-            <img
-              className="media__item"
-              src="./img/post/nature-4.png"
-              alt="Post Item"
-            />
-            <img
-              className="media__item"
-              src="./img/post/nature-5.png"
-              alt="Post Item"
-            />
-            <img
-              className="media__item"
-              src="./img/post/nature-6.png"
-              alt="Post Item"
-            /> */}
-          </div>
+        
           <div className="PostControls">
             <div className="icon-wrapper like">
               <span className="count likes-count">-500</span>
