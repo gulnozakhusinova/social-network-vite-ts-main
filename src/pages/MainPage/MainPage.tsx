@@ -8,7 +8,6 @@ import { MediaComponent } from "../../components/MediaComponent/MediaComponent"
 
 export const MainPage = () => {
 
-
   const imagePaths = [
     "./img/post/nature-1.png",
     "./img/post/nature-2.png",
@@ -17,7 +16,6 @@ export const MainPage = () => {
     "./img/post/nature-5.png",
     "./img/post/nature-6.png",
   ];
-
 
   return (
     <div className="MainPage">
