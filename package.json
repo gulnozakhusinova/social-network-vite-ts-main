@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://{github-username}.github.io/{repo-name}",
+  "homepage": "http://gulnozakhusinova.github.io/social-network-vite-ts-main",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
