@@ -2,12 +2,17 @@ import { InputHTMLAttributes } from "react"
 
 
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement>{}
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  errorMessage: string | undefined;
+  isError: boolean;
+}
 
 
 
-export const Input = ({type,placeholder}: InputProps) => {
+export const Input = ({ type, placeholder, errorMessage, isError,...props }: InputProps) => {
   return (
-    <input type={type} placeholder={placeholder} />
+    <div> <input type={type} placeholder={placeholder}  {...props}/>
+       { isError && (<p style={{color:"red",padding:"10px"}} >{errorMessage}</p>)}
+    </div>
   )
 }

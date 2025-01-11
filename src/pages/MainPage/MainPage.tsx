@@ -405,7 +405,7 @@ export const MainPage = () => {
               <p className="secondary__text">Сегодня 9:37</p>
             </div>
           </div>
-          <p className="Post__text">Момент умиротворения и спокойствия</p>
+          <p className="Post__text">Момент умиротворения и спокойствия </p>
           <MediaComponent images={imagePaths} />
         
           <div className="PostControls">

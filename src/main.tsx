@@ -6,6 +6,7 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { MainPage } from "./pages/MainPage/MainPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import App from './App'
+import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
 
 
 const routerConfig = createBrowserRouter([
@@ -24,6 +25,10 @@ const routerConfig = createBrowserRouter([
     path: "/profile",
     element: <ProfilePage />,
   },
+  {
+    path:"/registration",
+    element:<RegistrationPage/>
+  }
 ])
 
 
