@@ -4,28 +4,25 @@ import { Heading } from "../../components/typography";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
+import { useRegisterUserMutation } from "../../store/api/auth.api";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 // Схема валидации
 const registrationFormSchema = yup.object({
   username: yup.string().required("Имя пользователя обязательно"),
-  lastname: yup.string().required("Фамилия обязательна"),
   city: yup.string().required("Город обязателен"),
   useremail: yup.string().email("Введите почту в правильном формате").required("Email обязателен"),
   phone: yup.string().matches(/^\+?[1-9]\d{1,14}$/, "Неверный номер телефона").required("Номер телефона обязателен"),
   password: yup.string().required("Пароль обязателен").min(8, "Минимум 8 символов"),
-  confirmPassword: yup.string()
-    .oneOf([yup.ref('password')], 'Пароли не совпадают')
-    .required("Подтвердите пароль")
 });
 
 interface IRegistrationForm {
   username: string;
-  lastname: string;
   city: string;
   useremail: string;
   phone: string;
   password: string;
-  confirmPassword: string;
 }
 
 export const RegistrationPage = () => {
@@ -33,24 +30,40 @@ export const RegistrationPage = () => {
     resolver: yupResolver(registrationFormSchema),
     defaultValues: {
       username: "",
-      lastname: "",
       city: "",
       useremail: "",
       phone: "",
       password: "",
-      confirmPassword: ""
     },
   });
 
+  const navigate = useNavigate()
+  const [registerUser, { data: userData }] = useRegisterUserMutation();
+
+  // useEffect(() => {
+  //   if (userData?.user_id) {
+  //     navigate("/main")
+  //     localStorage.setItem("userId", JSON.stringify(userData.user_id))
+  //   }
+  // })
+
+
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
-    console.log(data);
-  };
+    registerUser({
+      email: data.useremail,
+      name: data.username,
+      phone_number: data.phone,
+      password: data.password,
+      user_city: data.city
+    })
+  }
+
 
   return (
     <div className="LoginPage">
       <Heading text="Регистрация" />
       <form onSubmit={handleSubmit(onSubmit)}>
-        
+
         {/* Имя пользователя */}
         <Controller
           name="username"
@@ -59,16 +72,8 @@ export const RegistrationPage = () => {
             <Input isError={errors.username ? true : false} errorMessage={errors.username?.message} type="text" placeholder="Имя пользователя" {...field} />
           )}
         />
-        
-        {/* Фамилия */}
-        <Controller
-          name="lastname"
-          control={control}
-          render={({ field }) => (
-            <Input isError={errors.lastname ? true : false} errorMessage={errors.lastname?.message} type="text" placeholder="Фамилия" {...field} />
-          )}
-        />
-        
+
+
         {/* Город */}
         <Controller
           name="city"
@@ -77,7 +82,7 @@ export const RegistrationPage = () => {
             <Input isError={errors.city ? true : false} errorMessage={errors.city?.message} type="text" placeholder="Город" {...field} />
           )}
         />
-        
+
         {/* Email */}
         <Controller
           name="useremail"
@@ -95,7 +100,7 @@ export const RegistrationPage = () => {
             <Input isError={errors.phone ? true : false} errorMessage={errors.phone?.message} type="text" placeholder="Номер телефона" {...field} />
           )}
         />
-        
+
         {/* Пароль */}
         <Controller
           name="password"
@@ -104,16 +109,7 @@ export const RegistrationPage = () => {
             <Input isError={errors.password ? true : false} errorMessage={errors.password?.message} type="password" placeholder="Пароль" {...field} />
           )}
         />
-        
-        {/* Подтверждение пароля */}
-        <Controller
-          name="confirmPassword"
-          control={control}
-          render={({ field }) => (
-            <Input isError={errors.confirmPassword ? true : false} errorMessage={errors.confirmPassword?.message} type="password" placeholder="Подтвердите пароль" {...field} />
-          )}
-        />
-        
+
         {/* Кнопка отправки формы */}
         <Button type="submit" text="Зарегистрироваться" />
       </form>

@@ -1,29 +1,45 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // import type { Pokemon } from './types'
 import { baseUrl } from "../../utils/baseUrl"
+import type {
+  GetUserByIdResponse,
+  LoginUserResponse,
+  LoginUserPayload,
+  RegisterUserPayload,
+  RegisterUserResponse,
+} from "./types"
 
-interface GetUserByIdResponse {
-  status: number,
-  message: {
-    mail: string;
-    phone_number: string;
-    user_id: number;
-    name: string;
-    reg_date: Date;
-    city: string;
-  }
-
-}
 
 export const AuthApi = createApi({
-  reducerPath: 'pokemonApi',
+  reducerPath: 'AuthApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getUserById: builder.query<GetUserByIdResponse, number>({
-      query: (id) => `/user?user_id=${id}`,
+      query: (user_id) => `/user?user_id=${user_id}`,
     }),
+
+    loginUser: builder.mutation<LoginUserResponse, LoginUserPayload>({
+      query: (payload) => ({
+        url: "/login",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+
+    registerUser: builder.mutation<RegisterUserResponse, RegisterUserPayload >({
+      query: (payload) => ({
+        url: "/registration",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+
   }),
 })
 
 
-export const { useGetUserByIdQuery } = AuthApi
+export const {
+  useGetUserByIdQuery,
+  useLoginUserMutation,
+  useRegisterUserMutation
+} = AuthApi

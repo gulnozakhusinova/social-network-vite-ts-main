@@ -1,10 +1,11 @@
+import { Link } from "react-router"
 
 
 export const AuthWith = () => {
   return (
     <div className="registration">
     <span>
-      У вас нет аккаунта? <a href="#">Зарегистрироваться</a>
+      У вас нет аккаунта? <Link to="/registration">Зарегистрироваться</Link>
     </span>
     <p>Войти с помощью</p>
     <div className="icons-wrapper">
