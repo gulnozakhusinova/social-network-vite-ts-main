@@ -6,7 +6,7 @@ import { Heading } from "../../components/typography";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useGetUserByIdQuery, useLoginUserMutation} from "../../store/api/auth.api";
+import { useGetUserByIdQuery, useLoginUserMutation } from "../../store/api/auth.api";
 
 
 const loginFormSchema = yup.object({
@@ -32,10 +32,10 @@ export const LoginPage = () => {
     defaultValues: { useremail: "", userpassword: "" },
   });
 
-  const [loginUser, { data:loginData, isError, isLoading, isSuccess, error }] = useLoginUserMutation()
+  const [loginUser, { data: loginData, isError, isLoading, isSuccess, error }] = useLoginUserMutation()
 
-  console.log(loginData,isError, isLoading, isSuccess, error);
-  
+  console.log(loginData, isError, isLoading, isSuccess, error);
+
 
 
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
@@ -51,7 +51,7 @@ export const LoginPage = () => {
   return (
     <div className="LoginPage">
       <Heading text="Авторизация " />
-   <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="useremail"
           control={control}
@@ -71,7 +71,7 @@ export const LoginPage = () => {
         <Button type={"submit"} text={"Войти"} />
       </form>
       <AppLink text="Забыли пароль?" href="#" />
-      <AuthWith /> 
+      <AuthWith />
 
       {/* {data && data.chart_items.map((item: any, idx: number) => {
         { item }

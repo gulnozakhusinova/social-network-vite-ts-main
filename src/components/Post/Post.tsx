@@ -1,3 +1,4 @@
+import { Button } from "../UI";
 import { CommentBlock } from "./CommentBlock";
 
 interface PostProps {
@@ -8,10 +9,11 @@ interface PostProps {
     photo_id: number
     photo_url: string
   }]
-  comment: string[]
+  comment: string[];
+  onClick?: () => void
 }
 
-export const Post = ({ name, date, text, photo, comment }: PostProps) => {
+export const Post = ({ name, date, text, photo, comment ,onClick}: PostProps) => {
   return (
     <div className="Post _liked _marked">
       <div className="UserElem">
@@ -22,6 +24,8 @@ export const Post = ({ name, date, text, photo, comment }: PostProps) => {
           </a>
           <p className="secondary__text">{date}</p>
         </div>
+      {onClick && <Button text={"open"} onClick={onClick}/>}
+
       </div>
       <p className="Post__text">{text}</p>
       <div className="media-container">

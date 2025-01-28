@@ -3,6 +3,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { MediaComponent } from "../../components/MediaComponent/MediaComponent"
 import { Post } from "../../components/Post/Post";
 import { useGetAllPostsQuery } from "../../store/api/post.api";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,7 +23,8 @@ export const MainPage = () => {
 
 
   const { data } = useGetAllPostsQuery(null)
- 
+
+  const navigate = useNavigate()
 
 
   return (
@@ -249,12 +251,13 @@ export const MainPage = () => {
 
         {data && data.message.map((item, idx) => (
           <Post
-          key={idx}
-          name={item.user_fk.name}
-          date={item.reg_date}
-          text={item.main_text}
-          photo={item.photos}
-          comment={item.comments}
+            key={idx}
+            name={item.user_fk.name}
+            date={item.reg_date}
+            text={item.main_text}
+            photo={item.photos}
+            comment={item.comments}
+            onClick={() => navigate(`/post/${item.id}`)}
           />
         ))}
 

@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { MainPage } from "./pages/MainPage/MainPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
+import { PostPage } from "./pages/PostPage/PostPage";
 
 
 const routerConfig = createBrowserRouter([
@@ -21,7 +22,10 @@ const routerConfig = createBrowserRouter([
   {
     path:"/registration",
     element:<RegistrationPage/>
-  }
+  },  {
+    path:"/post/:id",
+    element:<PostPage/>
+  },
 ])
 
 
